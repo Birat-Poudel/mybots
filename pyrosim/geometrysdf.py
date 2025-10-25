@@ -8,29 +8,21 @@ class GEOMETRY_SDF:
 
         self.string1 = '<geometry>'
 
-        if type == 'box':
+        # Normalize type: treat 'cube' as 'box' for SDF
+        normalized_type = 'box' if type == 'cube' else type
 
+        if normalized_type == 'box':
             sizeString = str(size[0]) + " " + str(size[1]) + " " + str(size[2])
-
-        elif type == 'sphere':
-
-            radiusString = str(size)
-
-        if type == 'box':
-
             self.string2 = '   <box>'
-
             self.string3 = '      <size>' + sizeString + '</size>'
-
             self.string4 = '   </box>'
-
-        elif type == 'sphere':
-
+        elif normalized_type == 'sphere':
+            radiusString = str(size)
             self.string2 = '   <sphere>'
-
             self.string3 = '      <radius>' + radiusString + '</radius>'
-
             self.string4 = '   </sphere>'
+        else:
+            raise ValueError('Unsupported geometry type for SDF: ' + str(type))
 
         self.string5 = '</geometry>'
 
