@@ -10,7 +10,7 @@ from world import WORLD
 
 class SIMULATION:
 
-    def __init__(self, steps, directOrGui):
+    def __init__(self, steps, directOrGui, solutionID):
         self.directOrGui = directOrGui
         
         if self.directOrGui == "GUI":
@@ -24,7 +24,7 @@ class SIMULATION:
         p.setGravity(0,0,-c.GRAVITY,self.physicsClient)
 
         self.world = WORLD()
-        self.robot = ROBOT(self.steps)
+        self.robot = ROBOT(self.steps, solutionID)
 
     def Run(self):
         for t in range(self.steps):
