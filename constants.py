@@ -1,0 +1,10 @@
+import numpy as np
+
+
+STEPS = 1000
+GRAVITY = 9.8
+AMPLITUDE = np.pi/4
+FREQUENCY = 4.0
+OFFSET = 0
+MAX_FORCE = 400
+SLEEP = 0.001
