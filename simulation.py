@@ -11,8 +11,9 @@ from world import WORLD
 class SIMULATION:
 
     def __init__(self, steps, directOrGui):
+        self.directOrGui = directOrGui
         
-        if directOrGui == "GUI":
+        if self.directOrGui == "GUI":
             self.physicsClient = p.connect(p.GUI)
         else:
             self.physicsClient = p.connect(p.DIRECT)
@@ -31,7 +32,9 @@ class SIMULATION:
             self.robot.Sense(t)
             self.robot.Think()
             self.robot.Act()
-            time.sleep(c.SLEEP)
+
+            if self.directOrGui == "GUI":
+                time.sleep(c.SLEEP)
 
     def Get_Fitness(self):
         self.robot.Get_Fitness()
