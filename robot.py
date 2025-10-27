@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
@@ -50,10 +51,19 @@ class ROBOT:
         # self.nn.Print()
     
     def Get_Fitness(self):
-        basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
-        basePosition = basePositionAndOrientation[0]
-        xPosition = basePosition[0]
+        lower_leg_names = ["BackLowerLeg", "FrontLowerLeg", "LeftLowerLeg", "RightLowerLeg"]
+        sensor_series = [self.sensors[name].values for name in lower_leg_names]
+
+        flight = np.logical_and.reduce([series == -1 for series in sensor_series])
+
+        b = flight.astype(int)
+        d = np.diff(np.concatenate(([0], b, [0])))
+        starts = np.where(d == 1)[0]
+        ends = np.where(d == -1)[0]
+        lengths = ends - starts
+        longest = int(lengths.max()) if lengths.size else 0
+
         f = open("tmp" + str(self.myID) + ".txt", "w")
-        f.write(str(xPosition))
+        f.write(str(longest))
         f.close()
         os.system("mv tmp" + str(self.myID) + ".txt fitness" + str(self.myID) + ".txt")

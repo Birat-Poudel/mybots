@@ -52,7 +52,7 @@ class PARALLEL_HILL_CLIMBER:
 
     def Select(self):
         for keyp, keyc in zip(self.parents.keys(), self.children.keys()):
-            if self.children[keyc].fitness < self.parents[keyp].fitness:
+            if self.children[keyc].fitness > self.parents[keyp].fitness:
                 self.parents[keyp] = copy.deepcopy(self.children[keyc])
 
 
@@ -63,9 +63,9 @@ class PARALLEL_HILL_CLIMBER:
 
     def Show_Best(self):
         bestKey = 0
-        bestFitness = float('inf')
+        bestFitness = float('-inf')
         for key in self.parents.keys():
-            if self.parents[key].fitness < bestFitness:
+            if self.parents[key].fitness > bestFitness:
                 bestKey = key
                 bestFitness = self.parents[key].fitness
 
