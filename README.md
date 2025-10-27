@@ -2,11 +2,11 @@
 
 ## Overview
 
-**mybots** is a robotics simulation environment built as part of an assignment submission for the [Ludobots Online Course](https://www.reddit.com/r/ludobots/wiki/installation/).  
+**mybots** is a repository containing code to simulate robots as part of an assignment submission for the [Ludobots Online Course](https://www.reddit.com/r/ludobots/wiki/installation/).  
 
 The project explores how virtual systems can evolve, move, and adapt inside a simulated world using the **PyBullet** physics engine.  
 
-Through incremental modules, learners build from simple one-link robots to complex, multi-jointed, sensor-driven agents capable of learning and adaptation.
+Through incremental modules, learners build from simple one-link robots to complex, multi-jointed, sensor-driven robots capable of learning and adaptation.
 
 ---
 
@@ -61,3 +61,9 @@ cd mybots
 git checkout simulation 
 python3 simulate.py
 ```
+
+---
+
+## License
+
+This project is licensed under the MIT License.
